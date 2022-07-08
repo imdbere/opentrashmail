@@ -34,7 +34,14 @@ if [ "$ADMIN" != "" ]; then
 fi
 
 echo "[MAILSERVER]" >> /var/www/opentrashmail/config.ini
-echo "MAILPORT=25" >> /var/www/opentrashmail/config.ini
+
+if [ "$MAILPORT" != "" ]; then
+	echo "MAILPORT=$MAILPORT" >> /var/www/opentrashmail/config.ini
+  echo "   [i] SMTP Port: $MAILPORT"
+else
+  echo "MAILPORT=25" >> /var/www/opentrashmail/config.ini
+fi
+
 if [ "$DISCARD_UNKNOWN" != "" ]; then
 	echo "DISCARD_UNKNOWN=$DISCARD_UNKNOWN" >> /var/www/opentrashmail/config.ini
   echo "   [i] Setting up DISCARD_UNKNOWN to: $DISCARD_UNKNOWN"
